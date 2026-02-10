@@ -1,0 +1,236 @@
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8 (X protocol)
+Server version: 8.0.32 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  SQL > create database info;
+Query OK, 1 row affected (0.0017 sec)
+ MySQL  localhost:33060+ ssl  SQL > use info;
+Default schema set to `info`.
+Fetching global names, object names from `info` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  info  SQL > create table clauses
+                                       -> (id int not null unique,name varchar(20),mail_id varchar(30),check(mail_id like "%@gmail.com"));
+Query OK, 0 rows affected (0.0071 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > desc clauses;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| mail_id | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.0023 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > insert into clauses values
+                                       -> (1,"taniya","taniya@gmail.com"),
+                                       -> (2,"jaha","jaha@gmail.com"),
+                                       -> (3,"ishita","ishita@gmail.com"),
+                                       -> (4,"ishi","ishi@gmail.com"),
+                                       -> (5,"sayed","sayed@gmail.com");
+Query OK, 5 rows affected (0.0084 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  info  SQL > select*from clauses where id=5;
++----+-------+-----------------+
+| id | name  | mail_id         |
++----+-------+-----------------+
+|  5 | sayed | sayed@gmail.com |
++----+-------+-----------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select*from clauses order by id;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  1 | taniya | taniya@gmail.com |
+|  2 | jaha   | jaha@gmail.com   |
+|  3 | ishita | ishita@gmail.com |
+|  4 | ishi   | ishi@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  |
++----+--------+------------------+
+5 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select*from clauses order by asc;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+ MySQL  localhost:33060+ ssl  info  SQL > select*from clauses order by name asc;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  4 | ishi   | ishi@gmail.com   |
+|  3 | ishita | ishita@gmail.com |
+|  2 | jaha   | jaha@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  |
+|  1 | taniya | taniya@gmail.com |
++----+--------+------------------+
+5 rows in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select * from clauses order by id desc;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  5 | sayed  | sayed@gmail.com  |
+|  4 | ishi   | ishi@gmail.com   |
+|  3 | ishita | ishita@gmail.com |
+|  2 | jaha   | jaha@gmail.com   |
+|  1 | taniya | taniya@gmail.com |
++----+--------+------------------+
+5 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select name from clauses order by id desc;
++--------+
+| name   |
++--------+
+| sayed  |
+| ishi   |
+| ishita |
+| jaha   |
+| taniya |
++--------+
+5 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > insert into clauses values
+                                       -> (6,"ishi","ishi@gmail.com");
+Query OK, 1 row affected (0.0019 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select*from clauses;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  1 | taniya | taniya@gmail.com |
+|  2 | jaha   | jaha@gmail.com   |
+|  3 | ishita | ishita@gmail.com |
+|  4 | ishi   | ishi@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  |
+|  6 | ishi   | ishi@gmail.com   |
++----+--------+------------------+
+6 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select distinct mail_id from clauses;
++------------------+
+| mail_id          |
++------------------+
+| taniya@gmail.com |
+| jaha@gmail.com   |
+| ishita@gmail.com |
+| ishi@gmail.com   |
+| sayed@gmail.com  |
++------------------+
+5 rows in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select distinct *,mail_id from clauses;
++----+--------+------------------+------------------+
+| id | name   | mail_id          | mail_id          |
++----+--------+------------------+------------------+
+|  1 | taniya | taniya@gmail.com | taniya@gmail.com |
+|  2 | jaha   | jaha@gmail.com   | jaha@gmail.com   |
+|  3 | ishita | ishita@gmail.com | ishita@gmail.com |
+|  4 | ishi   | ishi@gmail.com   | ishi@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  | sayed@gmail.com  |
+|  6 | ishi   | ishi@gmail.com   | ishi@gmail.com   |
++----+--------+------------------+------------------+
+6 rows in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select distinct * from clauses;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  1 | taniya | taniya@gmail.com |
+|  2 | jaha   | jaha@gmail.com   |
+|  3 | ishita | ishita@gmail.com |
+|  4 | ishi   | ishi@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  |
+|  6 | ishi   | ishi@gmail.com   |
++----+--------+------------------+
+6 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select * from clauses limit 5;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  1 | taniya | taniya@gmail.com |
+|  2 | jaha   | jaha@gmail.com   |
+|  3 | ishita | ishita@gmail.com |
+|  4 | ishi   | ishi@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  |
++----+--------+------------------+
+5 rows in set (0.0007 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select *from clauses limit 2,4;
++----+--------+------------------+
+| id | name   | mail_id          |
++----+--------+------------------+
+|  3 | ishita | ishita@gmail.com |
+|  4 | ishi   | ishi@gmail.com   |
+|  5 | sayed  | sayed@gmail.com  |
+|  6 | ishi   | ishi@gmail.com   |
++----+--------+------------------+
+4 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id count(*) from clauses group by mail_id;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'count(*) from clauses group by mail_id' at line 1
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id,count(*) from clauses group by mail_id;
++------------------+----------+
+| mail_id          | count(*) |
++------------------+----------+
+| taniya@gmail.com |        1 |
+| jaha@gmail.com   |        1 |
+| ishita@gmail.com |        1 |
+| ishi@gmail.com   |        2 |
+| sayed@gmail.com  |        1 |
++------------------+----------+
+5 rows in set (0.0007 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select id,count(*) from clauses group by mail_id;
+ERROR: 1055: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'info.clauses.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ MySQL  localhost:33060+ ssl  info  SQL > select id,count(*) from clauses group by id;
++----+----------+
+| id | count(*) |
++----+----------+
+|  1 |        1 |
+|  2 |        1 |
+|  3 |        1 |
+|  4 |        1 |
+|  5 |        1 |
+|  6 |        1 |
++----+----------+
+6 rows in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select id from clauses group by id;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
+|  5 |
+|  6 |
++----+
+6 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id from clauses group by mail_id;
++------------------+
+| mail_id          |
++------------------+
+| taniya@gmail.com |
+| jaha@gmail.com   |
+| ishita@gmail.com |
+| ishi@gmail.com   |
+| sayed@gmail.com  |
++------------------+
+5 rows in set (0.0007 sec)
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id from clauses 
+                                       -> grpup by mail_id
+                                       -> having count(mail_id)>1;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by mail_id
+having count(mail_id)>1' at line 2
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id from clauses  grpup by mail_id having count(mail_id) > 1;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by mail_id having count(mail_id) > 1' at line 1
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id from clauses group by mail_id having count (mail_id) > 1;
+ERROR: 1630: FUNCTION info.count does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+ MySQL  localhost:33060+ ssl  info  SQL > select mail_id from clauses group by mail_id having count  (mail_id) > 1;
+ERROR: 1630: FUNCTION info.count does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+ MySQL  localhost:33060+ ssl  info  SQL > SELECT mail_id
+                                       -> FROM clauses
+                                       -> GROUP BY mail_id
+                                       -> HAVING COUNT (mail_id) > 1;
+ERROR: 1630: FUNCTION info.COUNT does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+ MySQL  localhost:33060+ ssl  info  SQL > SELECT mail_id
+                                       -> FROM clauses
+                                       -> GROUP BY mail_id
+                                       -> HAVING COUNT(*) > 1;
++----------------+
+| mail_id        |
++----------------+
+| ishi@gmail.com |
++----------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:33060+ ssl  info  SQL >  
