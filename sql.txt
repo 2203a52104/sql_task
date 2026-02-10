@@ -1,4 +1,4 @@
-\sql
+ qq\sql
 \connect root@localhost
 use jaha;
 //creating a table students
@@ -27,3 +27,4 @@ select name, email from students where collegename='abc_college';
 alter table students modify column email varchar(100);
 // Rename the column collegename to college_name.
 alter table students rename column collegename to college_name;
+
