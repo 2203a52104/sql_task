@@ -1,0 +1,81 @@
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 12 (X protocol)
+Server version: 8.0.32 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  SQL > CREATE TABLE students (
+                                 ->     roll_no INT PRIMARY KEY,
+                                 ->     name VARCHAR(30),
+                                 ->     phn_num VARCHAR(15) UNIQUE,
+                                 ->     email VARCHAR(40) UNIQUE
+                                 -> );
+ERROR: 1046: No database selected
+ MySQL  localhost:33060+ ssl  SQL > create database keys;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'keys' at line 1
+ MySQL  localhost:33060+ ssl  SQL > use keys;
+MySQL Error 1049: Unknown database 'keys'
+ MySQL  localhost:33060+ ssl  SQL > create database keys_practice;
+Query OK, 1 row affected (0.0151 sec)
+ MySQL  localhost:33060+ ssl  SQL > use keys_practice;
+Default schema set to `keys_practice`.
+Fetching global names, object names from `keys_practice` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE students (
+                                                ->     roll_no INT PRIMARY KEY,
+                                                ->     name VARCHAR(30),
+                                                ->     phn_num VARCHAR(15) UNIQUE,
+                                                ->     email VARCHAR(40) UNIQUE
+                                                -> );
+Query OK, 0 rows affected (0.0570 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE employees (
+                                                ->     emp_id INT PRIMARY KEY,
+                                                ->     name VARCHAR(30),
+                                                ->     dept VARCHAR(30),
+                                                ->     salary INT,
+                                                ->     attendance INT
+                                                -> );
+Query OK, 0 rows affected (0.0083 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE patients (
+                                                ->     patient_id INT PRIMARY KEY,
+                                                ->     name VARCHAR(30),
+                                                ->     age INT,
+                                                ->     problem VARCHAR(30)
+                                                -> );
+Query OK, 0 rows affected (0.0101 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE acc_details (
+                                                ->     acc_num INT PRIMARY KEY,
+                                                ->     customer_id INT,
+                                                ->     name VARCHAR(30)
+                                                -> );
+Query OK, 0 rows affected (0.0072 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE depts (
+                                                ->     dep_id INT PRIMARY KEY,
+                                                ->     dept_name VARCHAR(30)
+                                                -> );
+Query OK, 0 rows affected (0.0084 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE students (
+                                                ->     stud_id INT PRIMARY KEY,
+                                                ->     stud_name VARCHAR(30),
+                                                ->     dep_id INT,
+                                                ->     FOREIGN KEY (dep_id) REFERENCES depts(dep_id)
+                                                -> );
+ERROR: 1050: Table 'students' already exists
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE studentss (stud_id INT PRIMARY KEY,stud_name VARCHAR(30),dep_id INT, FOREIGN KEY (dep_id) REFERENCES depts(dep_id) );
+Query OK, 0 rows affected (0.0118 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE customer_details (
+                                                ->     customer_id INT PRIMARY KEY,
+                                                ->     customer_name VARCHAR(30)
+                                                -> );
+Query OK, 0 rows affected (0.0067 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > 
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > CREATE TABLE order_details (
+                                                ->     order_id INT PRIMARY KEY,
+                                                ->     order_name VARCHAR(30),
+                                                ->     customer_id INT,
+                                                ->     FOREIGN KEY (customer_id) REFERENCES customer_details(customer_id)
+                                                -> );
+Query OK, 0 rows affected (0.0080 sec)
+ MySQL  localhost:33060+ ssl  keys_practice  SQL > 
