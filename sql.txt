@@ -1,0 +1,29 @@
+\sql
+\connect root@localhost
+use jaha;
+//creating a table students
+create table students (
+sid int,
+name varchar(40),
+email varchar(40),
+collegename varchar(40));
+// to see the tables
+show tables;
+// to describe students table 
+desc students;
+// to add age column to students 
+alter table students add column age int;
+// to insert values 
+insert into students values  (1,'taniya','taniya@gmail.com','abc_College',20), (2,'bannu','bannu@gmail.com','ops_college',20), (3,'hannu','hannu@gmail.com','pqr_college',22), (4,'ishi','ishi@gmail.com','hij_college',19), (5,'jaha','jaha@gmail.com','klu_college',20);
+// to display all the data 
+select * from students;
+// Delete the student record whose sid = 5.
+delete from students where sid=5;
+//Display all records from the students table.
+select * from students;
+//Display only name and email of students from college "ABC College".
+select name, email from students where collegename='abc_college';
+//Change the datatype of email column to VARCHAR(100).
+alter table students modify column email varchar(100);
+// Rename the column collegename to college_name.
+alter table students rename column collegename to college_name;
